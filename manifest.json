@@ -1,0 +1,23 @@
+{
+	"manifest_version": 2,
+	"name": "https检测",
+	"description": "检测当前页面中http的链接",
+	"version": "0.1",
+	"content_scripts": [{"matches": ["*://*.qq.com/*"],"js": ["contentscript.js"]}],
+	"browser_action": {
+		"default_icon": "icon.png",
+		"default_popup": "popup.html",
+		"default_title": "https检测"
+	},
+	"permissions": [
+		"*://*.qq.com/*",
+		"tabs",
+		"activeTab",
+		"storage"
+	],
+	"background": {
+        "scripts": [
+            "background.js"
+        ]
+    }
+}
