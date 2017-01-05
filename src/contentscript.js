@@ -91,45 +91,19 @@
     
 
     if( flag){
-    	var type = -1;
-    	if( host_protocol=='http' ){
-    		// console.info( '此页面还未部署https' );
-    		type = -2;
-    	}else{
-    		type = 0;
-    	}
+        var type = -1;
+        if( host_protocol=='http' ){
+            // console.info( '此页面还未部署https' );
+            type = -2;
+        }else{
+            type = 0;
+        }
         var s = getUrl();
-        // console.log(s);
-        // var resu = s[0],
-        // 	len = resu.length,
-        // 	html = '';
 
-        // for(var i=0; i<len; i++){
-        // 	var item = resu[i];
-        // 	html += '<p><span>'+item[0]+'</span>'+item[1]+'</p>';
-        // }
-        // if( len ){
-        // 	getElement('.con').innerHTML = html;
-        // }else{
-        // 	getElement('.con').innerHTML = '页面上无http资源';
-        // }
+        var load = window.chrome.loadTimes();
+        console.log( '页面加载时间： '+ ((load.finishDocumentLoadTime-load.requestTime)*1000).toFixed(6) + ' ms' );
         chrome.runtime.sendMessage({type:type, data:s[0]}, function(response){
-			console.log( response );
-		});
+            console.log( response );
+        });
     }
 })();
-
-// chrome.runtime.sendMessage({img_len:img_len}, function(response){
-// 	console.log( response );
-// });
-
-// chrome.runtime.onMessage.addListener(function(request, sender, sendRequest) { // background返回的回调消息
-//     console.log( request );
-//     console.log( sender );
-
-    
-//     if(request == 'Hello'){
-//         sendResponse( 'from contentscript' );
-//     }
-// });
-
